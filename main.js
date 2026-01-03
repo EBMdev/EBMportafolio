@@ -45,3 +45,20 @@ if (heroText) {
     if (i === text.length) clearInterval(typing);
   }, 100);
 }
+// Animación de skills
+const skillFills = document.querySelectorAll('.skill-fill');
+
+const skillObserver = new IntersectionObserver(
+  entries => {
+    entries.forEach(entry => {
+      if(entry.isIntersecting){
+        const fill = entry.target;
+        fill.style.width = fill.getAttribute('data-skill');
+      }
+    });
+  },
+  { threshold: 0.5 }
+);
+
+skillFills.forEach(fill => skillObserver.observe(fill));
+
